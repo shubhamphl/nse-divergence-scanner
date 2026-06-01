@@ -1,9 +1,8 @@
-yfinance
 pandas
 numpy
 scipy
 ta
+yfinance
 jinja2
 matplotlib
 mplfinance
-tvdatafeed
