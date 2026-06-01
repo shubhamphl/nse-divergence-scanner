@@ -1,0 +1,9 @@
+yfinance
+pandas
+numpy
+scipy
+ta
+jinja2
+matplotlib
+mplfinance
+tvdatafeed
