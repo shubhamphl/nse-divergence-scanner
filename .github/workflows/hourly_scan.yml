@@ -1,0 +1,39 @@
+name: NSE Divergence Scan
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: '5 * * * *'
+
+jobs:
+
+  scan:
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: pip install -r requirements.txt
+
+      - run: python scanner.py
+
+      - name: Commit Reports
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
+          git add docs
+
+          git commit -m "hourly scan" || exit 0
+
+          git push
